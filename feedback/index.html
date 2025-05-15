@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="auto">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reclamação de Ônibus - Connectilha</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background-color: var(--bs-body-bg);
+      color: var(--bs-body-color);
+    }
+    .form-container {
+      max-width: 720px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .logo {
+      max-width: 180px;
+      display: block;
+      margin: 1rem auto;
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1050;
+    }
+  </style>
+</head>
+<body>
+  <!-- Tema -->
+  <div class="dropdown theme-toggle">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Tema
+    </button>
+    <ul class="dropdown-menu">
+      <li><button class="dropdown-item" onclick="setTheme('light')">Claro</button></li>
+      <li><button class="dropdown-item" onclick="setTheme('dark')">Escuro</button></li>
+      <li><button class="dropdown-item" onclick="setTheme('auto')">Automático</button></li>
+    </ul>
+  </div>
+
+  <div class="form-container">
+    <img src="Connectilha_banner.png" alt="Logo Connectilha" class="logo">
+
+    <h1 class="text-center mb-4">Formulário de Reclamação</h1>
+
+    <form id="formReclamacao">
+      <!-- Número do ônibus -->
+      <div class="mb-3">
+        <label for="numeroOnibus" class="form-label">Qual o número do ônibus?</label>
+        <select id="numeroOnibus" class="form-select" required>
+          <option value="">Selecione</option>
+          <option>101</option>
+          <option>204</option>
+          <option>305</option>
+          <option>410</option>
+        </select>
+      </div>
+
+      <!-- Linha -->
+      <div class="mb-3">
+        <label for="linhaOnibus" class="form-label">Qual a linha do ônibus?</label>
+        <select id="linhaOnibus" class="form-select" required>
+          <option value="">Selecione</option>
+          <option>T401 - Cohab / São Cristóvão</option>
+          <option>T402 - Santa Maria / Centro</option>
+          <option>T403 - Bugio / Siqueira Campos</option>
+        </select>
+      </div>
+
+      <!-- Problemas enfrentados -->
+      <div class="mb-3">
+        <label class="form-label">Quais problemas você enfrentou?</label>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="Atraso excessivo" id="problema1">
+          <label class="form-check-label" for="problema1">Atraso excessivo</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="Ônibus lotado" id="problema2">
+          <label class="form-check-label" for="problema2">Ônibus lotado</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="Falta de acessibilidade" id="problema3">
+          <label class="form-check-label" for="problema3">Falta de acessibilidade</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="Ar-condicionado quebrado" id="problema4">
+          <label class="form-check-label" for="problema4">Ar-condicionado quebrado</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="Veículo sujo ou mal conservado" id="problema5">
+          <label class="form-check-label" for="problema5">Veículo sujo ou mal conservado</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="Má conduta do motorista" id="problema6">
+          <label class="form-check-label" for="problema6">Má conduta do motorista</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="Mudança inesperada no trajeto" id="problema7">
+          <label class="form-check-label" for="problema7">Mudança inesperada no trajeto</label>
+        </div>
+      </div>
+
+      <!-- Descrição opcional -->
+      <div class="mb-3">
+        <label for="descricao" class="form-label">Descreva melhor aqui seu problema (Opcional)</label>
+        <textarea class="form-control" id="descricao" rows="3" maxlength="300"></textarea>
+      </div>
+
+      <!-- Avaliação da viagem -->
+<div class="mb-3">
+  <label for="avaliacaoViagem" class="form-label">Como você avalia sua viagem?</label>
+  <input type="range" class="form-range" min="0" max="5" step="1" id="avaliacaoViagem">
+  <div class="d-flex justify-content-between px-1">
+    <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+  </div>
+</div>
+
+<!-- Avaliação da segurança -->
+<div class="mb-3">
+  <label for="avaliacaoSeguranca" class="form-label">Como você avalia a segurança da viagem?</label>
+  <input type="range" class="form-range" min="0" max="5" step="1" id="avaliacaoSeguranca">
+  <div class="d-flex justify-content-between px-1">
+    <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+  </div>
+</div>
+
+
+      <!-- Sugestões -->
+      <div class="mb-3">
+        <label for="sugestao" class="form-label">Alguma sugestão de melhoria?</label>
+        <textarea class="form-control" id="sugestao" rows="3" maxlength="300"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Enviar Reclamação</button>
+      <div class="mt-3 text-success" id="mensagem"></div>
+    </form>
+  </div>
+
+  <script>
+    function setTheme(theme) {
+      document.documentElement.setAttribute("data-bs-theme", theme);
+      localStorage.setItem("theme", theme);
+    }
+
+    // Aplicar tema salvo
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) document.documentElement.setAttribute("data-bs-theme", savedTheme);
+
+    // Envio do formulário
+    document.getElementById("formReclamacao").addEventListener("submit", function (e) {
+      e.preventDefault();
+      document.getElementById("mensagem").textContent =
+        "Obrigado! Sua reclamação foi registrada com sucesso.";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
